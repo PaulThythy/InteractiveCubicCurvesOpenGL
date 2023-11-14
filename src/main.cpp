@@ -54,6 +54,7 @@ void drawLine()
 	glEnd();
 }
 
+// callback function for managing window size changes
 void main_reshape(int width, int height)
 {
 	GLint viewport[4];
@@ -66,6 +67,7 @@ void main_reshape(int width, int height)
 	glLoadIdentity();
 }
 
+// callback function for managing screen display
 void main_display(void)
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -86,6 +88,7 @@ void main_display(void)
 	glutSwapBuffers();
 }
 
+// callback function for managing mouse events
 void Mouse(int button, int state, int x, int y)
 {
 	GLint viewport[4];
@@ -168,6 +171,7 @@ void Mouse(int button, int state, int x, int y)
 	}
 }
 
+// callback function for managing mouse motions
 void Motion(int x, int y)
 {
 	GLint viewport[4];
@@ -184,6 +188,7 @@ void Motion(int x, int y)
 	}
 }
 
+// Init openGL and main loop
 int main(int argc, char **argv)
 {
 
