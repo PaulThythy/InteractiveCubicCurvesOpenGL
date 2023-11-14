@@ -4,7 +4,7 @@
 #include <GL/glut.h>
 
 #include "vector2.h"
-#include "menu.cpp"
+#include "glut_menu.h"
 
 const float PI = 3.1415926535;
 
@@ -56,6 +56,7 @@ void main_display(void)
 		glVertex2f(V[i].m_x, V[i].m_y);
 		glEnd();
 	}
+
 	glutPostRedisplay();
 
 	glutSwapBuffers();
@@ -69,7 +70,7 @@ void Mouse(int button, int state, int x, int y)
 	glutSetCursor(GLUT_CURSOR_CROSSHAIR);
 	glGetIntegerv(GL_VIEWPORT, viewport);
 
-	if (button == GLUT_LEFT_BUTTON)
+	if (button == GLUT_LEFT_BUTTON && !GLUTMENU_SELECTED)
 	{
 		right = 0;
 		left = 1;
@@ -91,6 +92,8 @@ void Mouse(int button, int state, int x, int y)
 
 		glutPostRedisplay();
 	}
+
+	GLUTMENU_SELECTED = false;
 
 	if (button == GLUT_RIGHT_BUTTON)
 	{
