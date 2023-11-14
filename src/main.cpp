@@ -4,6 +4,7 @@
 #include <GL/glut.h>
 
 #include "vector2.h"
+#include "menu.cpp"
 
 const float PI = 3.1415926535;
 
@@ -13,34 +14,6 @@ const int NMAX = 100;
 int N = 0;
 
 int mp = -1, right = 0, left = 0;
-
-void menuCallback(int value){
-	switch (value){
-		case 1:
-			std::cout << "option 1" << std::endl;
-			break;
-		case 2:
-			std::cout << "option 2" << std::endl;
-			break;
-		case 3:
-			std::cout << "option 3" << std::endl;
-			break;
-		case 4:
-			std::cout << "Quitter" << std::endl;
-			exit(0);
-			break;
-	}
-}
-
-void createMenu(){
-	glutCreateMenu(menuCallback);
-	glutAddMenuEntry("Option 1", 1);
-	glutAddMenuEntry("Option 2", 2);
-	glutAddMenuEntry("Option 3", 3);
-	glutAddMenuEntry("Quitter", 4);
-
-	glutAttachMenu(GLUT_RIGHT_BUTTON);
-}
 
 Vector2 V[NMAX];
 
@@ -203,6 +176,7 @@ int main(int argc, char **argv)
 	glutDisplayFunc(main_display);
 	glutMouseFunc(Mouse);
 	glutMotionFunc(Motion);
+
 	createMenu();
 
 	glutPostRedisplay();
