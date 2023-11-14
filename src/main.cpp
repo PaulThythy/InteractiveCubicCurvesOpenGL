@@ -3,6 +3,8 @@
 #include <math.h>
 #include <GL/glut.h>
 
+#include "vector2.h"
+
 const float PI = 3.1415926535;
 
 // global variables for OpenGL
@@ -31,7 +33,7 @@ void menuCallback(int value){
 }
 
 void createMenu(){
-	int menu = glutCreateMenu(menuCallback);
+	glutCreateMenu(menuCallback);
 	glutAddMenuEntry("Option 1", 1);
 	glutAddMenuEntry("Option 2", 2);
 	glutAddMenuEntry("Option 3", 3);
@@ -40,25 +42,14 @@ void createMenu(){
 	glutAttachMenu(GLUT_RIGHT_BUTTON);
 }
 
-struct Point
-{
-	float x, y;
-	Point(float a = 0, float b = 0) { set(a, b); }
-	void set(float a, float b)
-	{
-		x = a;
-		y = b;
-	}
-};
-
-Point P[NMAX];
+Vector2 V[NMAX];
 
 void drawLine()
 {
 	glBegin(GL_POINTS);
 	for (int i = 0; i < N; i++)
 	{
-		glVertex2f(P[i].x, P[i].y);
+		glVertex2f(V[i].m_x, V[i].m_y);
 	}
 	glEnd();
 }
@@ -87,7 +78,7 @@ void main_display(void)
 	{
 		glLoadName(i);
 		glBegin(GL_POINTS);
-		glVertex2f(P[i].x, P[i].y);
+		glVertex2f(V[i].m_x, V[i].m_y);
 		glEnd();
 	}
 	glutPostRedisplay();
@@ -111,12 +102,12 @@ void Mouse(int button, int state, int x, int y)
 		glInitNames();
 		glPushName(1);
 
-		P[N].x = x;
-		P[N].y = viewport[3] - y;
+		V[N].m_x = x;
+		V[N].m_y = viewport[3] - y;
 
 		glLoadName(N);
 		glBegin(GL_POINTS);
-		glVertex2f(P[N].x, P[N].y);
+		glVertex2f(V[N].m_x, V[N].m_y);
 		glEnd();
 
 		if (state == GLUT_UP)
@@ -153,7 +144,7 @@ void Mouse(int button, int state, int x, int y)
 			{
 				glLoadName(i);
 				glBegin(GL_POINTS);
-				glVertex2f(P[i].x, P[i].y);
+				glVertex2f(V[i].m_x, V[i].m_y);
 				glEnd();
 			}
 
@@ -186,8 +177,8 @@ void Motion(int x, int y)
 	if ((right) && (mp != -1))
 	{
 		int i = mp;
-		P[i].x = x;
-		P[i].y = viewport[3] - y;
+		V[i].m_x = x;
+		V[i].m_y = viewport[3] - y;
 		drawLine();
 		glutPostRedisplay();
 	}
