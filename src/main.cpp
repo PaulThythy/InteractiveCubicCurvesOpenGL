@@ -27,6 +27,21 @@ void drawLine()
 	glEnd();
 }
 
+void drawLineStipple(){
+	glColor3f(1.0, 1.0, 1.0);
+
+	glEnable(GL_LINE_STIPPLE);
+	glLineStipple(1, 0xAAAA);
+
+	glBegin(GL_LINES);
+	for(int i = 0; i < N-1; i++){
+		glVertex2f(V[i].m_x, V[i].m_y); 
+        glVertex2f(V[i + 1].m_x, V[i + 1].m_y); 
+	}
+	glEnd();
+	glDisable(GL_LINE_STIPPLE);
+}
+
 // callback function for managing window size changes
 void main_reshape(int width, int height)
 {
@@ -56,6 +71,8 @@ void main_display(void)
 		glVertex2f(V[i].m_x, V[i].m_y);
 		glEnd();
 	}
+
+	drawLineStipple();
 
 	glutPostRedisplay();
 
