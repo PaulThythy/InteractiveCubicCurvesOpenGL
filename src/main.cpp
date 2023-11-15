@@ -17,6 +17,7 @@ int mp = -1, right = 0, left = 0;
 
 Vector2 V[NMAX];
 
+//-----------------------------------------------
 void drawLine()
 {
 	glBegin(GL_POINTS);
@@ -27,6 +28,7 @@ void drawLine()
 	glEnd();
 }
 
+//-----------------------------------------------
 void drawLineStipple(){
 	glColor3f(1.0, 1.0, 1.0);
 
@@ -43,8 +45,11 @@ void drawLineStipple(){
 }
 
 // callback function for managing window size changes
-void main_reshape(int width, int height)
+void main_reshape(int newWidth, int newHeight)
 {
+	width = newWidth;
+	height = newHeight;
+
 	GLint viewport[4];
 	glViewport(0, 0, width, height);
 	glGetIntegerv(GL_VIEWPORT, viewport);
@@ -190,6 +195,9 @@ int main(int argc, char **argv)
 	glutInitWindowPosition(0, 0);
 	glutInit(&argc, argv);
 	glEnable(GL_DEPTH_TEST);
+
+	width = glutGet(GLUT_WINDOW_WIDTH);
+    height = glutGet(GLUT_WINDOW_HEIGHT);
 
 	window = glutCreateWindow("Select");
 	glutReshapeFunc(main_reshape);
