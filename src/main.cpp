@@ -13,12 +13,13 @@ int window, width, height;
 const int NMAX = 100;
 int N = 0;
 
+// mp : current point, right, left: mouse buttons pressed or not
 int mp = -1, right = 0, left = 0;
 
 Vector2 V[NMAX];
 
 //-----------------------------------------------
-void drawLine()
+void drawPoints()
 {
 	glBegin(GL_POINTS);
 	for (int i = 0; i < N; i++)
@@ -181,7 +182,7 @@ void Motion(int x, int y)
 		int i = mp;
 		V[i].m_x = x;
 		V[i].m_y = viewport[3] - y;
-		drawLine();
+		drawPoints();
 		glutPostRedisplay();
 	}
 }
