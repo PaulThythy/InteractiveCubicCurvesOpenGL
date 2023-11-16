@@ -93,6 +93,7 @@ void Mouse(int button, int state, int x, int y)
 	glutSetCursor(GLUT_CURSOR_CROSSHAIR);
 	glGetIntegerv(GL_VIEWPORT, viewport);
 
+	// to avoid to put a point in the window while menu is activated
 	if (button == GLUT_LEFT_BUTTON && !GLUTMENU_SELECTED)
 	{
 		right = 0;
