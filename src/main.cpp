@@ -10,7 +10,9 @@ const float PI = 3.1415926535;
 
 // global variables for OpenGL
 int window, width, height;
+// number max of points in the window
 const int NMAX = 100;
+// number of points in the window
 int N = 0;
 
 // mp : current point, right, left: mouse buttons pressed or not

@@ -12,8 +12,4 @@ struct Vector2 {
     inline static float distance(const Vector2& v1, const Vector2& v2) {
         return sqrt(pow(v2.m_x - v1.m_x, 2) + pow(v2.m_y - v1.m_y, 2));
     }
-
-    inline void dragPoint(int x, int y){
-        this->set(x, y);
-    }
 };
