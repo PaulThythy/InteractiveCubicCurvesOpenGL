@@ -47,6 +47,29 @@ void drawLineStipple(){
 	glDisable(GL_LINE_STIPPLE);
 }
 
+int getClosestPoint(int x, int y){
+	float minDistance = std::numeric_limits<float>::max();
+	int closestIndex = -1;
+
+	GLint viewport[4];
+	glGetIntegerv(GL_VIEWPORT, viewport);
+	Vector2 mouseClick(x, viewport[3] - y);
+
+	for(int i = 0; i < N; i++) {
+		float dist = Vector2::distance(mouseClick, V[i]);
+		if(dist < minDistance) {
+			minDistance = dist;
+			closestIndex = i;
+		}
+	}
+
+	if(minDistance < 5.0) {
+		return closestIndex;
+	}else{
+		return -1;
+	}
+}
+
 // callback function for managing window size changes
 void main_reshape(int newWidth, int newHeight)
 {
