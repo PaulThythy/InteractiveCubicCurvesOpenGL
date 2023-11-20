@@ -125,6 +125,9 @@ void Mouse(int button, int state, int x, int y)
 	{
 		right = 0;
 		left = 1;
+
+		getClosestPoint(x, y);
+
 		glColor3f(0.0, 1.0, 0.0);
 		glPointSize(3.0);
 		glInitNames();
@@ -145,6 +148,7 @@ void Mouse(int button, int state, int x, int y)
 	}
 
 	GLUTMENU_SELECTED = false;
+	dragging = false;
 
 	if (button == GLUT_RIGHT_BUTTON)
 	{
@@ -202,6 +206,8 @@ void Mouse(int button, int state, int x, int y)
 // callback function for managing mouse motions
 void Motion(int x, int y)
 {	
+	dragging = true;
+
 	GLint viewport[4];
 
 	glGetIntegerv(GL_VIEWPORT, viewport);
