@@ -63,7 +63,8 @@ int getClosestPoint(int x, int y){
 		}
 	}
 
-	if(minDistance < 5.0) {
+	if(minDistance < 10.0) {
+		mp = closestIndex;
 		return closestIndex;
 	}else{
 		return -1;
@@ -118,6 +119,8 @@ void Mouse(int button, int state, int x, int y)
 	glutSetCursor(GLUT_CURSOR_CROSSHAIR);
 	glGetIntegerv(GL_VIEWPORT, viewport);
 
+	getClosestPoint(x, y);
+
 	// to avoid to put a point in the window while menu is activated
 	if (button == GLUT_LEFT_BUTTON && !GLUTMENU_SELECTED)
 	{
@@ -148,6 +151,9 @@ void Mouse(int button, int state, int x, int y)
 	{
 		left = 0;
 		right = 1;
+
+		getClosestPoint(x, y);
+
 		if (state == GLUT_DOWN)
 		{
 			GLuint *selectBuf = new GLuint[200];
@@ -203,7 +209,7 @@ void Motion(int x, int y)
 
 	glGetIntegerv(GL_VIEWPORT, viewport);
 
-	if ((right) && (mp != -1))
+	if ((left) && (mp != -1))
 	{
 		int i = mp;
 		V[i].m_x = x;
