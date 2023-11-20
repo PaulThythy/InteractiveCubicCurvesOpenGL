@@ -14,6 +14,8 @@ int window, width, height;
 const int NMAX = 100;
 // number of points in the window
 int N = 0;
+// boolean to know if we are dragging a point
+bool dragging = false;
 
 // mp : current point, right, left: mouse buttons pressed or not
 int mp = -1, right = 0, left = 0;
@@ -122,7 +124,7 @@ void Mouse(int button, int state, int x, int y)
 	getClosestPoint(x, y);
 
 	// to avoid to put a point in the window while menu is activated
-	if (button == GLUT_LEFT_BUTTON && !GLUTMENU_SELECTED)
+	if (button == GLUT_LEFT_BUTTON && !GLUTMENU_SELECTED && !dragging)
 	{
 		right = 0;
 		left = 1;
@@ -202,7 +204,7 @@ void Mouse(int button, int state, int x, int y)
 
 // callback function for managing mouse motions
 void Motion(int x, int y)
-{
+{	
 	GLint viewport[4];
 
 	glGetIntegerv(GL_VIEWPORT, viewport);
