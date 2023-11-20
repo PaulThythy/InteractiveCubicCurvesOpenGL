@@ -152,8 +152,6 @@ void Mouse(int button, int state, int x, int y)
 		left = 0;
 		right = 1;
 
-		getClosestPoint(x, y);
-
 		if (state == GLUT_DOWN)
 		{
 			GLuint *selectBuf = new GLuint[200];
