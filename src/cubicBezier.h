@@ -1,12 +1,15 @@
+#pragma once
+
 #include <iostream>
 
 #include "vector2.h"
+#include "matrix.h"
 
 struct CubicBezier {
-    const int  nbVector2 = 100;
 
     inline CubicBezier(){}
 
+    // to use de Casteljau algorithm
     inline Vector2 interpolate(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, double t){
         double u = 1-t;
         double uu = u*u;
