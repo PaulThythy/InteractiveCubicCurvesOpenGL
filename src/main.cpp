@@ -49,7 +49,7 @@ void drawLineStipple(){
 	glDisable(GL_LINE_STIPPLE);
 }
 
-int getClosestPoint(int x, int y){
+void getClosestPoint(int x, int y){
 	float minDistance = std::numeric_limits<float>::max();
 	int closestIndex = -1;
 
@@ -67,9 +67,8 @@ int getClosestPoint(int x, int y){
 
 	if(minDistance < 10.0) {
 		mp = closestIndex;
-		return closestIndex;
 	}else{
-		return -1;
+		mp = -1;
 	}
 }
 
@@ -120,8 +119,6 @@ void Mouse(int button, int state, int x, int y)
 
 	glutSetCursor(GLUT_CURSOR_CROSSHAIR);
 	glGetIntegerv(GL_VIEWPORT, viewport);
-
-	getClosestPoint(x, y);
 
 	// to avoid to put a point in the window while menu is activated
 	if (button == GLUT_LEFT_BUTTON && !GLUTMENU_SELECTED && !dragging)
