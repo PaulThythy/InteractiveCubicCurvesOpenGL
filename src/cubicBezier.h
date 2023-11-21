@@ -22,9 +22,9 @@ struct CubicBezier {
     inline Matrix getMatT() { return this->T; }
     inline Matrix getMatP() { return this->P; }
 
-    inline void setMatT(float t) {
-        float tt = t*t;
-        float ttt = tt*t;
+    inline void setMatT(double t) {
+        double tt = t*t;
+        double ttt = tt*t;
 
         T.mat[0][0] = ttt; T.mat[0][1] = tt; T.mat[0][2] = t; T.mat[0][3] = 1;
     }

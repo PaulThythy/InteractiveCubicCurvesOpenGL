@@ -6,12 +6,12 @@
 
 struct Matrix {
     
-    std::vector<std::vector<float>> mat;
+    std::vector<std::vector<double>> mat;
     size_t rows;
     size_t cols;
 
     inline Matrix(size_t _rows, size_t _cols): rows(_rows), cols(_cols) {
-        this->mat.assign(rows, std::vector<float>(cols, 0));
+        this->mat.assign(rows, std::vector<double>(cols, 0));
     }
 
     inline void display() const {
@@ -69,7 +69,7 @@ inline static Matrix operator*(const Matrix& m1, const Matrix& m2) {
     return result;
 }
 
-inline static Matrix operator*(const float scalar, const Matrix& m) {
+inline static Matrix operator*(const double scalar, const Matrix& m) {
     Matrix result(m.rows, m.cols);
 
     for(size_t i = 0; i < m.rows; i++){

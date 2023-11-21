@@ -1,6 +1,9 @@
 #include <GL/glut.h>
 
 #include "draw_functions.h"
+#include "cubicBezier.h"
+#include "cubicBSpline.h"
+#include "cubicCatmullRom.h"
 
 void drawPoints(Vector2* V, int N) {
     glColor3f(0.0, 1.0, 0.0);
@@ -39,6 +42,31 @@ void drawLine(const Vector2& v1, const Vector2& v2){
 }
 
 void drawBezier(Vector2* V, int N){
-    float t = 0;
-    float tSteps = 1/NB_POINTS_INTERPOLATION;
+    double t = 0;
+    double tSteps = 1/static_cast<double>(NB_POINTS_INTERPOLATION);
+
+    CubicBezier bezier;
+
+    for(int i = 0; i < N; i++){
+        Vector2 p0 = V[i];
+        Vector2 p1 = V[i+1];
+        Vector2 p2 = V[i+2];
+        Vector2 p3 = V[i+3];
+        bezier.setMatP(p0, p1, p2, p3);
+
+        while(t <= 1){
+            bezier.setMatT(t);
+            Matrix m1 = bezier.getMatT() * bezier.getMatM() * bezier.getMatP();
+            Vector2 v1(m1);
+
+            bezier.setMatT(t+tSteps);
+            Matrix m2 = bezier.getMatT() * bezier.getMatM() * bezier.getMatP();
+            Vector2 v2(m2);
+            
+            glColor3f(1.0, 0.0, 0.0);
+            drawLine(v1, v2);
+
+            t += tSteps; 
+        }
+    }
 }

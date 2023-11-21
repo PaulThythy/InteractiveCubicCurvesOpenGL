@@ -3,7 +3,7 @@
 
 #include "vector2.h"
 
-const int NB_POINTS_INTERPOLATION = 1000;
+const int NB_POINTS_INTERPOLATION = 10;
 
 void drawPoints(Vector2* V, int N);
 void drawLineStipple(Vector2* V, int N);

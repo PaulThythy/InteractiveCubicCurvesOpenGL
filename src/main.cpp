@@ -70,9 +70,9 @@ void main_display(void)
 	drawPoints(V, N);
 	drawLineStipple(V, N);
 
-	/*if(DISP_BEZIER) 
-	else if(DISP_CATMULLROM)
-	else if(DISP_BSPLINE)*/
+	if(DISP_BEZIER) drawBezier(V, N);
+	//else if(DISP_CATMULLROM)
+	//else if(DISP_BSPLINE)
 
 	glutPostRedisplay();
 
