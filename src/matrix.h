@@ -13,7 +13,7 @@ struct Matrix {
     inline Matrix(size_t _rows, size_t _cols) {
         this->rows = _rows;
         this->cols = _cols;
-        this->mat(rows, std::vector<float>(cols, 0));
+        this->mat.assign(rows, std::vector<float>(cols, 0));
     }
 
     inline void display() const {
