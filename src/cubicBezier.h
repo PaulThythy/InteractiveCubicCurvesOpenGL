@@ -7,7 +7,14 @@
 
 struct CubicBezier {
 
-    inline CubicBezier(){}
+    Matrix m{4, 4};
+
+    inline CubicBezier(){
+        m.mat[0][0] = 1;
+        m.mat[1][0] = -3; m.mat[2][0] = 3;
+        m.mat[2][0] = 3; m.mat[2][1] = -6; m.mat[2][2] = 3;
+        m.mat[3][0] = -1; m.mat[3][1] = 3; m.mat[3][2] = -3; m.mat[3][3] = 1;
+    }
 
     // to use de Casteljau algorithm
     inline Vector2 interpolate(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, double t){
