@@ -5,6 +5,7 @@
 #include "vector2.h"
 #include "glut_menu.h"
 #include "matrix.h"
+#include "draw_functions.cpp"
 
 const float PI = 3.1415926535;
 
@@ -97,6 +98,7 @@ void main_display(void)
 	glPointSize(3.0);
 	glInitNames();
 	glPushName(1);
+	// or use drawPoints function ?
 	for (int i = 0; i < N; i++)
 	{
 		glLoadName(i);
