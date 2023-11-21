@@ -225,16 +225,6 @@ void Motion(int x, int y)
 // Init openGL and main loop
 int main(int argc, char **argv)
 {
-	Matrix mat1(2, 2); mat1.mat[0][1] = 6; mat1.mat[0][0] = 10;
-	Matrix mat2(2, 2); mat2.mat[1][0] = 4; mat2.mat[0][0] = 5;
-	mat1.display();
-	mat2.display();
-	Matrix result1 = mat1 + mat2;
-	Matrix result2 = mat1 - mat2;
-	result1.display();
-	result2.display();
-
-
 	glutInitDisplayMode(GLUT_RGB | GLUT_DEPTH | GLUT_DOUBLE);
 	glutInitWindowSize(500, 500);
 	glutInitWindowPosition(0, 0);
