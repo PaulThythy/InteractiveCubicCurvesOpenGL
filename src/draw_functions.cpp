@@ -1,13 +1,18 @@
 #include <GL/glut.h>
 
-#include "vector2.h"
+#include "draw_functions.h"
 
 void drawPoints(Vector2* V, int N) {
-    glBegin(GL_POINTS);
+    glColor3f(0.0, 1.0, 0.0);
+    glPointSize(3.0);
+    glInitNames();
+    glPushName(1);
     for (int i = 0; i < N; i++){
+        glLoadName(i);
+        glBegin(GL_POINTS);
         glVertex2f(V[i].m_x, V[i].m_y);
+        glEnd();
     }
-    glEnd();
 }
 
 void drawLineStipple(Vector2* V, int N) {

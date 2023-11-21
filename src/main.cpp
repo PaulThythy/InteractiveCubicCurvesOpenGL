@@ -5,7 +5,7 @@
 #include "vector2.h"
 #include "glut_menu.h"
 #include "matrix.h"
-#include "draw_functions.cpp"
+#include "draw_functions.h"
 
 const float PI = 3.1415926535;
 
@@ -23,33 +23,6 @@ int mp = -1, right = 0, left = 0;
 
 Vector2 V[NMAX];
 
-//-----------------------------------------------
-void drawPoints()
-{
-	glBegin(GL_POINTS);
-	for (int i = 0; i < N; i++)
-	{
-		glVertex2f(V[i].m_x, V[i].m_y);
-	}
-	glEnd();
-}
-
-//-----------------------------------------------
-void drawLineStipple(){
-	glColor3f(1.0, 1.0, 1.0);
-
-	glEnable(GL_LINE_STIPPLE);
-	glLineStipple(1, 0xAAAA);
-
-	glBegin(GL_LINES);
-	for(int i = 0; i < N-1; i++){
-		glVertex2f(V[i].m_x, V[i].m_y); 
-        glVertex2f(V[i + 1].m_x, V[i + 1].m_y); 
-	}
-	glEnd();
-	glDisable(GL_LINE_STIPPLE);
-}
-
 void getClosestPoint(int x, int y){
 	float minDistance = std::numeric_limits<float>::max();
 	int closestIndex = -1;
@@ -66,7 +39,7 @@ void getClosestPoint(int x, int y){
 		}
 	}
 
-	if(minDistance < 10.0) {
+	if(minDistance <= 10.0) {
 		mp = closestIndex;
 	}else{
 		mp = -1;
@@ -94,20 +67,9 @@ void main_display(void)
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	glColor3f(0.0, 1.0, 0.0);
-	glPointSize(3.0);
-	glInitNames();
-	glPushName(1);
-	// or use drawPoints function ?
-	for (int i = 0; i < N; i++)
-	{
-		glLoadName(i);
-		glBegin(GL_POINTS);
-		glVertex2f(V[i].m_x, V[i].m_y);
-		glEnd();
-	}
+	drawPoints(V, N);
 
-	drawLineStipple();
+	drawLineStipple(V, N);
 
 	glutPostRedisplay();
 
@@ -219,7 +181,8 @@ void Motion(int x, int y)
 		int i = mp;
 		V[i].m_x = x;
 		V[i].m_y = viewport[3] - y;
-		drawPoints();
+		//drawPoints();
+		drawPoints(V, N);
 		glutPostRedisplay();
 	}
 }
