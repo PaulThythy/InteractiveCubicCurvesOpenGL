@@ -1,5 +1,4 @@
 #include <iostream>
-#include <new>
 #include <math.h>
 #include <GL/glut.h>
 
@@ -226,23 +225,9 @@ void Motion(int x, int y)
 // Init openGL and main loop
 int main(int argc, char **argv)
 {
-	float mat14[1][4];
-	mat14[0][0] = 4; mat14[0][1] = 2; mat14[0][2] = 5; mat14[0][3] = 8; 
-
-	float mat42[4][2];
-	mat42[0][0] = 1; mat42[0][1] = 2;
-	mat42[1][0] = 5; mat42[1][1] = 6;
-	mat42[2][0] = 7; mat42[2][1] = 2;
-	mat42[3][0] = 1; mat42[3][1] = 2;
-
-	float res[1][2] = matrix::multMat14Mat42(mat14, mat42);
-
-	for(int i = 0; i < 1 ; i++){
-		for(int j = 0; j < 2; j++){
-			std::cout << res[i][j] << "\t";
-		}
-		std::cout << std::endl;
-	} 
+	Matrix mat1(2, 2); mat1.mat[0][1] = 6; mat1.mat[0][0] = 10;
+	Matrix mat2(2, 2); mat2.mat[1][0] = 4; mat2.mat[0][0] = 5;
+	
 
 	glutInitDisplayMode(GLUT_RGB | GLUT_DEPTH | GLUT_DOUBLE);
 	glutInitWindowSize(500, 500);
