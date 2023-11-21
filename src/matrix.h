@@ -10,9 +10,7 @@ struct Matrix {
     size_t rows;
     size_t cols;
 
-    inline Matrix(size_t _rows, size_t _cols) {
-        this->rows = _rows;
-        this->cols = _cols;
+    inline Matrix(size_t _rows, size_t _cols): rows(_rows), cols(_cols) {
         this->mat.assign(rows, std::vector<float>(cols, 0));
     }
 
