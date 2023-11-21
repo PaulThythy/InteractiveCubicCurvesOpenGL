@@ -31,3 +31,14 @@ void drawLineStipple(Vector2* V, int N) {
     glDisable(GL_LINE_STIPPLE);
 }
 
+void drawLine(const Vector2& v1, const Vector2& v2){
+    glBegin(GL_LINES);
+    glVertex2f(v1.m_x, v1.m_y);
+    glVertex2f(v2.m_x, v2.m_y);
+    glEnd();
+}
+
+void drawBezier(Vector2* V, int N){
+    float t = 0;
+    float tSteps = 1/NB_POINTS_INTERPOLATION;
+}
