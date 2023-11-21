@@ -21,6 +21,7 @@ struct Matrix {
             }
             std::cout << std::endl;
         }
+        std::cout << std::endl;
     }
 };
 
@@ -46,7 +47,7 @@ inline static Matrix operator-(const Matrix& m1, const Matrix& m2) {
 
     for(size_t i = 0; i < m1.rows; i++){
         for(size_t j = 0; j < m1.cols; j++){
-            result.mat[i][j] = m1.mat[i][j] * m2.mat[i][j];
+            result.mat[i][j] = m1.mat[i][j] - m2.mat[i][j];
         }
     }
     return result;
@@ -63,6 +64,17 @@ inline static Matrix operator*(const Matrix& m1, const Matrix& m2) {
             for (size_t k = 0; k < m1.cols; ++k) {
                 result.mat[i][j] += m1.mat[i][k] * m2.mat[k][j];
             }
+        }
+    }
+    return result;
+}
+
+inline static Matrix operator*(const float scalar, const Matrix& m) {
+    Matrix result(m.rows, m.cols);
+
+    for(size_t i = 0; i < m.rows; i++){
+        for(size_t j = 0; j < m.cols; j++){
+            result.mat[i][j] += m.mat[i][j] * scalar;
         }
     }
     return result;
