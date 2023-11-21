@@ -181,7 +181,6 @@ void Motion(int x, int y)
 		int i = mp;
 		V[i].m_x = x;
 		V[i].m_y = viewport[3] - y;
-		//drawPoints();
 		drawPoints(V, N);
 		glutPostRedisplay();
 	}
