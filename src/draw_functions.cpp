@@ -42,31 +42,34 @@ void drawLine(const Vector2& v1, const Vector2& v2){
 }
 
 void drawBezier(Vector2* V, int N){
-    double t = 0;
+    //double t = 0;
     double tSteps = 1/static_cast<double>(NB_POINTS_INTERPOLATION);
 
     CubicBezier bezier;
+    if(N >= 4){
+        for(int i = 0; i < N-3; i+=3){
+            Vector2 p0 = V[i];
+            Vector2 p1 = V[i+1];
+            Vector2 p2 = V[i+2];
+            Vector2 p3 = V[i+3];
+            bezier.setMatP(p0, p1, p2, p3);
 
-    for(int i = 0; i < N; i++){
-        Vector2 p0 = V[i];
-        Vector2 p1 = V[i+1];
-        Vector2 p2 = V[i+2];
-        Vector2 p3 = V[i+3];
-        bezier.setMatP(p0, p1, p2, p3);
+            double t = 0;
+            while(t <= 1){
+                bezier.setMatT(t);
+                Matrix m1 = bezier.getMatT() * bezier.getMatM() * bezier.getMatP();
+                Vector2 v(m1);
 
-        while(t <= 1){
-            bezier.setMatT(t);
-            Matrix m1 = bezier.getMatT() * bezier.getMatM() * bezier.getMatP();
-            Vector2 v1(m1);
+                t += tSteps;
 
-            bezier.setMatT(t+tSteps);
-            Matrix m2 = bezier.getMatT() * bezier.getMatM() * bezier.getMatP();
-            Vector2 v2(m2);
-            
-            glColor3f(1.0, 0.0, 0.0);
-            drawLine(v1, v2);
-
-            t += tSteps; 
+                bezier.setMatT(t);
+                Matrix m2 = bezier.getMatT() * bezier.getMatM() * bezier.getMatP();
+                Vector2 v_next(m2);
+                
+                glColor3f(1.0, 0.0, 0.0);
+                drawLine(v, v_next);
+ 
+            }
         }
     }
 }
