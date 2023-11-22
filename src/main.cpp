@@ -1,4 +1,5 @@
 #include <iostream>
+#include <limits>
 #include <math.h>
 #include <GL/glut.h>
 
@@ -24,7 +25,7 @@ int mp = -1, right = 0, left = 0;
 Vector2 V[NMAX];
 
 void getClosestPoint(int x, int y){
-	float minDistance = std::numeric_limits<float>::max();
+	double minDistance = std::numeric_limits<double>::max();
 	int closestIndex = -1;
 
 	GLint viewport[4];
@@ -32,7 +33,7 @@ void getClosestPoint(int x, int y){
 	Vector2 mouseClick(x, viewport[3] - y);
 
 	for(int i = 0; i < N; i++) {
-		float dist = Vector2::distance(mouseClick, V[i]);
+		double dist = Vector2::distance(mouseClick, V[i]);
 		if(dist < minDistance) {
 			minDistance = dist;
 			closestIndex = i;
