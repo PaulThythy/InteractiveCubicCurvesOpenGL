@@ -103,3 +103,34 @@ void drawCatmullRom(Vector2* V, int N) {
         }
     }
 }
+
+void drawBSpline(Vector2* V, int N) {
+    double tSteps = 1/static_cast<double>(NB_POINTS_INTERPOLATION);
+
+    CubicBSpline bSpline;
+    if(N >= 4){
+        for(int k = 3; k < N; k++){
+            Vector2 pkminus3 = V[k-3];
+            Vector2 pkminus2 = V[k-2];
+            Vector2 pkminus1 = V[k-1];
+            Vector2 pk = V[k];
+            bSpline.setMatP(pkminus3, pkminus2, pkminus1, pk);
+
+            double t = 0;
+            while(t <= 1 - tSteps){
+                bSpline.setMatT(t);
+                Matrix m1 = bSpline.getMatT() * bSpline.getMatM() * bSpline.getMatP();
+                Vector2 v(m1);
+
+                t += tSteps;
+
+                bSpline.setMatT(t);
+                Matrix m2 = bSpline.getMatT() * bSpline.getMatM() * bSpline.getMatP();
+                Vector2 v_next(m2);
+                
+                glColor3f(1.0, 1.0, 0.0);
+                drawLine(v, v_next);
+            }
+        }
+    }
+}

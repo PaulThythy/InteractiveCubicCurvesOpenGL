@@ -73,7 +73,7 @@ void main_display(void)
 
 	if(DISP_BEZIER) drawBezier(V, N);
 	else if(DISP_CATMULLROM) drawCatmullRom(V, N);
-	//else if(DISP_BSPLINE)
+	else if(DISP_BSPLINE) drawBSpline(V, N);
 
 	glutPostRedisplay();
 

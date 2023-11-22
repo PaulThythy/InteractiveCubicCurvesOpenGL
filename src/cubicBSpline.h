@@ -16,6 +16,8 @@ struct CubicBSpline {
         M.mat[1][0] = 3;    M.mat[1][1] = -6;   M.mat[1][2] = 3;
         M.mat[2][0] = -3;   M.mat[2][2] = 3;
         M.mat[3][0] = 1;    M.mat[3][1] = 4;    M.mat[3][2] = 1; 
+
+        this->M = 0.16 * this->M;
     }
 
     inline Matrix getMatM() { return this->M; }
