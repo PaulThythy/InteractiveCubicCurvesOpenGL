@@ -34,15 +34,14 @@ void drawLineStipple(Vector2* V, int N) {
     glDisable(GL_LINE_STIPPLE);
 }
 
-void drawLine(const Vector2& v1, const Vector2& v2){
+void drawLine(const Vector2& v1, const Vector2& v2) {
     glBegin(GL_LINES);
     glVertex2f(v1.m_x, v1.m_y);
     glVertex2f(v2.m_x, v2.m_y);
     glEnd();
 }
 
-void drawBezier(Vector2* V, int N){
-    //double t = 0;
+void drawBezier(Vector2* V, int N) {
     double tSteps = 1/static_cast<double>(NB_POINTS_INTERPOLATION);
 
     CubicBezier bezier;
@@ -55,7 +54,7 @@ void drawBezier(Vector2* V, int N){
             bezier.setMatP(p0, p1, p2, p3);
 
             double t = 0;
-            while(t <= 1){
+            while(t <= 1 - tSteps){
                 bezier.setMatT(t);
                 Matrix m1 = bezier.getMatT() * bezier.getMatM() * bezier.getMatP();
                 Vector2 v(m1);
