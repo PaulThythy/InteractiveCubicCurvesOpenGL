@@ -12,12 +12,12 @@ struct CubicCatmullRom {
     Matrix P{4, 2};
 
     inline CubicCatmullRom(){
-        M.mat[0][0] = 1;
-        M.mat[1][0] = -3;   M.mat[2][0] = 3;
-        M.mat[2][0] = 3;    M.mat[2][1] = -6;   M.mat[2][2] = 3;
-        M.mat[3][0] = -1;   M.mat[3][1] = 3;    M.mat[3][2] = -3; M.mat[3][3] = 1;
+        M.mat[0][0] = -1;   M.mat[0][1] = 3;    M.mat[0][2] = -3;  M.mat[0][3] = 1;
+        M.mat[1][0] = 2;    M.mat[1][1] = -5;   M.mat[1][2] = 4;   M.mat[1][3] = -1;
+        M.mat[2][0] = -1;   M.mat[2][2] = 1;
+        M.mat[3][1] = 2;
 
-        this->M = (1/2) * this->M;
+        this->M = 0.5 * this->M;
     }
 
     inline Matrix getMatM() { return this->M; }

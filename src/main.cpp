@@ -72,7 +72,7 @@ void main_display(void)
 	drawLineStipple(V, N);
 
 	if(DISP_BEZIER) drawBezier(V, N);
-	//else if(DISP_CATMULLROM)
+	else if(DISP_CATMULLROM) drawCatmullRom(V, N);
 	//else if(DISP_BSPLINE)
 
 	glutPostRedisplay();
